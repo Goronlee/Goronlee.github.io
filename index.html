@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Board Foot Calculator &amp; Lumber Shopping List Generator</title>
+<meta name="description" content="Enter your cut list in finished dimensions — get the boards to buy: quarter thickness, standard length, board count with kerf and yield, billed board feet, and cost.">
+<link rel="canonical" href="https://goronlee.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232f6f3e'/%3E%3Ctext x='16' y='22' font-size='16' text-anchor='middle' fill='white' font-family='Georgia'%3EBF%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Board Foot Calculator &amp; Lumber Shopping List Generator">
+<meta property="og:description" content="From finished part sizes to the boards to actually buy: quarter system, standard lengths, kerf and yield aware.">
+<meta property="og:url" content="https://goronlee.github.io/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Board Foot Calculator &amp; Lumber Shopping List">
+<meta name="twitter:description" content="Enter your cut list — get board counts, billed board feet and cost.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Board Foot Calculator & Lumber Shopping List Generator",
+  "url": "https://goronlee.github.io/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a board foot?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A board foot is a volume measurement for lumber equal to 144 cubic inches — a piece 12 inches long, 12 inches wide, and 1 inch thick. Hardwood lumber in North America is billed by the board foot." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you calculate board feet?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Board feet per board = thickness (in) × width (in) × length (ft) ÷ 12. For a project part, the billed thickness is the rough quarter thickness (4/4 = 1 in, 5/4 = 1.25 in), not the finished dimension." }
+    },
+    {
+      "@type": "Question",
+      "name": "How many board feet is a 2x6x8 board?",
+      "acceptedAnswer": { "@type": "Answer", "text": "2 × 6 × 8 ÷ 12 = 8 board feet. Construction lumber uses nominal sizes; hardwood is billed by quarter thicknesses (4/4, 5/4, 6/4, 8/4)." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why can't I buy lumber by total board feet alone?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Board feet are a billing unit; the purchasing unit is the board. A part thicker than 1 in finished needs 5/4 or thicker stock, parts longer than a board cannot come out of it, and ripping narrow parts from a wide board wastes 10–35% depending on the width remainder. This calculator converts your cut list into the boards to buy." }
+    }
+  ]
+}
+</script>
+<style>
+:root{--ink:#1f2933;--line:#cbd2d9;--brand:#2f6f3e;--bg:#f7f5f0;--card:#ffffff}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body{font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:var(--bg);line-height:1.55}
+header{background:var(--brand);color:#fff;padding:1.2rem 1rem;text-align:center}
+header h1{font-size:1.45rem;font-weight:700}
+header p{opacity:.92;font-size:.95rem;margin-top:.2rem}
+main{max-width:860px;margin:0 auto;padding:1rem}
+section{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1.2rem;margin-bottom:1.2rem}
+h2{font-size:1.15rem;margin-bottom:.6rem;color:var(--brand)}
+label{display:block;font-size:.85rem;font-weight:700;margin:.5rem 0 .15rem}
+input,select{width:100%;padding:.45rem;border:1px solid var(--line);border-radius:5px;font-size:1rem;background:#fff;font-family:inherit}
+/* desktop table layout */
+.pieces{display:table;width:100%;border-spacing:0 .35rem}
+.prow{display:table-row}
+.prow .cell{display:table-cell;padding:0 .25rem}
+.prow .cell:first-child{padding-left:0}
+.prow .cell:last-child{padding-right:0}
+.fl{font-size:.7rem;color:#52606d;font-weight:700;display:block;text-transform:uppercase;letter-spacing:.03em}
+.prow.head{display:none} /* default hidden; shown on desktop below */
+@media(min-width:641px){.fl{display:none}.prow .cell:nth-child(n+2){padding-top:.35rem}
+  .pieces .prow.head{display:table-row}
+  .prow.head .cell{display:table-cell;padding-top:0;padding-bottom:.15rem}
+  .prow.head .cell b{font-size:.72rem;color:#52606d;text-transform:uppercase;letter-spacing:.03em}
+}
+.prow input{min-width:0}
+.w-name{width:20%}.w-th{width:17%}.w-wi{width:17%}.w-le{width:17%}.w-q{width:10%}.w-del{width:7%}
+.prow.head .cell b{white-space:nowrap}
+button{background:var(--brand);color:#fff;border:0;border-radius:5px;padding:.55rem 1rem;font-size:1rem;cursor:pointer;margin-top:.6rem;font-family:inherit}
+button.ghost{background:#eef0f2;color:var(--ink);border:1px solid var(--line)}
+button.del{background:none;color:#a33;border:1px solid var(--line);padding:.4rem .55rem;margin-top:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+.grid2 label:not(.sub-label){min-height:3.1em}
+.sub-label{font-size:.85rem;color:var(--ink);font-weight:700;margin:.25rem 0 .15rem}
+.summary-box{background:#eef3ee;border-left:4px solid var(--brand);padding:.6rem .8rem;margin-top:.8rem;font-size:1rem;border-radius:0 5px 5px 0}
+.summary-box:empty{display:none}
+.summary-box b{color:var(--brand)}
+.result{font-size:1.05rem}
+.result b{color:var(--brand)}
+table{width:100%;border-collapse:collapse;margin-top:.6rem;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:.4rem .5rem;text-align:left}
+th{background:#eef3ee}
+.note{font-size:.85rem;color:#52606d;margin-top:.5rem}
+.warn{background:#fdf3f2;border:1px solid #e5b4ae;color:#8c2f22;padding:.5rem .6rem;border-radius:5px;font-size:.85rem;margin-top:.6rem}
+.total{font-size:1.1rem;margin-top:.7rem}
+.faq h3{font-size:1rem;margin:.7rem 0 .2rem}
+footer{text-align:center;font-size:.8rem;color:#7b8794;padding:1rem}
+footer a{color:#52606d}
+/* mobile: rows become labeled cards */
+@media(max-width:640px){
+  header{padding:1rem .8rem}
+  header h1{font-size:1.15rem;line-height:1.3}
+  header p{font-size:.82rem;line-height:1.4}
+  main{padding:.7rem .6rem;max-width:100%}
+  section{padding:.9rem .7rem;max-width:100%}
+  .pieces,.prow{display:block;width:100%}
+  .prow{background:#fbfaf7;border:1px solid var(--line);border-radius:7px;padding:.55rem .6rem;margin-bottom:.55rem;position:relative;width:auto}
+  .prow .cell{display:block;width:100%!important;max-width:100%;padding:.15rem 0;box-sizing:border-box}
+  .prow .cell input{width:100%!important;max-width:100%;box-sizing:border-box;display:block}
+  .pieces{width:100%!important;display:block}
+  .prow.head{display:none!important}
+  .fl{display:block}
+  .prow .cell.w-del{width:auto!important;max-width:max-content;padding:0;margin-top:.3rem}
+  .prow .cell.w-del .fl{display:none}
+  .prow .cell.w-del .del{padding:.3rem .5rem}
+  .prow .cell.w-name input{font-weight:700;color:var(--brand)}
+  .grid2{grid-template-columns:1fr}
+  .grid2 label:not(.sub-label){min-height:0}
+  h2{font-size:1rem}
+  table{font-size:.82rem;table-layout:fixed;width:100%}
+  th,td{padding:.3rem .3rem;word-break:break-word;overflow-wrap:anywhere}
+  .summary-box{font-size:.92rem;padding:.5rem .6rem}
+  .result,.pieces,.prow,.prow .cell,.grid2>div,section>*,main>*{max-width:100%;box-sizing:border-box}
+  .row,.prow{min-width:0}
+}
+img,table,input,select{max-width:100%}
+</style>
+</head>
+<body>
+<header>
+  <h1>Board Foot Calculator &amp; Lumber Shopping List</h1>
+  <p>Enter parts in <b>finished</b> sizes — get the boards to buy: quarter thickness, standard length, board count, billed board feet and cost.</p>
+</header>
+<main>
+
+<section>
+  <h2>1. Your cut list (finished dimensions)</h2>
+  <div class="pieces" id="pieces">
+    <div class="prow head">
+      <div class="cell w-name"><b>Part</b></div>
+      <div class="cell w-th"><b>Finished thick (in)</b></div>
+      <div class="cell w-wi"><b>Finished width (in)</b></div>
+      <div class="cell w-le"><b>Finished length (in)</b></div>
+      <div class="cell w-q"><b>Qty</b></div>
+      <div class="cell w-del"></div>
+    </div>
+    <div class="prow">
+      <div class="cell w-name cname"><span class="fl">Part</span><input type="text" value="table leg" aria-label="part name"></div>
+      <div class="cell w-th"><span class="fl">Finished thick (in)</span><input type="number" min="0.1" step="0.125" value="1.5" aria-label="finished thickness in inches" class="t"></div>
+      <div class="cell w-wi"><span class="fl">Finished width (in)</span><input type="number" min="0.1" step="0.25" value="1.5" aria-label="finished width in inches" class="w"></div>
+      <div class="cell w-le"><span class="fl">Finished length (in)</span><input type="number" min="1" step="0.5" value="29" aria-label="finished length in inches" class="l"></div>
+      <div class="cell w-q"><span class="fl">Qty</span><input type="number" min="1" step="1" value="4" aria-label="quantity" class="q"></div>
+      <div class="cell w-del"><span class="fl">&nbsp;</span><button type="button" class="del" onclick="delRow(this)" aria-label="delete row">✕</button></div>
+    </div>
+    <div class="prow">
+      <div class="cell w-name cname"><span class="fl">Part</span><input type="text" value="apron" aria-label="part name"></div>
+      <div class="cell w-th"><span class="fl">Finished thick (in)</span><input type="number" min="0.1" step="0.125" value="0.75" aria-label="finished thickness in inches" class="t"></div>
+      <div class="cell w-wi"><span class="fl">Finished width (in)</span><input type="number" min="0.1" step="0.25" value="3.5" aria-label="finished width in inches" class="w"></div>
+      <div class="cell w-le"><span class="fl">Finished length (in)</span><input type="number" min="1" step="0.5" value="22" aria-label="finished length in inches" class="l"></div>
+      <div class="cell w-q"><span class="fl">Qty</span><input type="number" min="1" step="1" value="4" aria-label="quantity" class="q"></div>
+      <div class="cell w-del"><span class="fl">&nbsp;</span><button type="button" class="del" onclick="delRow(this)" aria-label="delete row">✕</button></div>
+    </div>
+  </div>
+  <button type="button" class="ghost" onclick="addRow()">+ Add part</button>
+  <div class="grid2">
+    <div>
+      <label>Board width you'll buy (random-width hardwood: pick the rack)</label>
+      <select id="bw">
+        <option value="4">4 in</option>
+        <option value="5">5 in</option>
+        <option value="6" selected>6 in</option>
+        <option value="7">7 in</option>
+        <option value="8">8 in</option>
+        <option value="10">10 in</option>
+      </select>
+    </div>
+    <div>
+      <label>Lumber grade (defect allowance)</label>
+      <select id="grade">
+        <option value="0" selected>FAS / Select — no allowance</option>
+        <option value="0.167">FAS, clear parts — +16.7%</option>
+        <option value="0.333">#1 Common — +33.3%</option>
+        <option value="0.5">#2A Common — +50%</option>
+      </select>
+    </div>
+  </div>
+  <p class="note">Method: quarter thickness auto-picked from finished thickness (rough stock ≈ finished + 3/16&Prime; or +1/4&Prime; planing allowance), length rounded up to standard even-foot boards, kerf 1/8&Prime;, 2&Prime; end-trim allowance, strip yield from your chosen board width.</p>
+</section>
+
+<section>
+  <h2>2. Shopping list — the boards to buy</h2>
+  <div class="result" id="out" aria-live="polite">
+    <table>
+      <thead><tr><th>Part</th><th>Buy stock</th><th>Board length</th><th>Boards</th><th>Billed bf</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div id="lenWarn" class="warn" hidden></div>
+    <p class="summary-box" id="summary"></p>
+    <p class="total">Total billed board feet: <b id="tbf">0</b> bf</p>
+    <label>Hardwood price per board foot ($)</label>
+    <div class="grid2">
+      <div>
+        <label class="sub-label">4/4 – 5/4 stock</label>
+        <input type="number" id="priceThin" min="0" step="0.5" value="6" aria-label="price per board foot for 4/4 and 5/4 stock">
+      </div>
+      <div>
+        <label class="sub-label">6/4 – 8/4 and thicker</label>
+        <input type="number" id="priceThick" min="0" step="0.5" value="8" aria-label="price per board foot for 6/4 and thicker stock">
+      </div>
+    </div>
+    <p class="total">Estimated cost: <b id="cost">$0</b> <span class="note">(before tax &amp; possible S2S surfacing fee; lumberyards bill per whole board)</span></p>
+    <p class="note">⚠️ Thicker stock costs more per board foot — 6/4 and 8/4 typically run 20–40% above 4/4. Set both prices to see the real bill; big-box construction lumber is priced <b>per board</b>, not per board foot.</p>
+  </div>
+</section>
+
+<section class="faq">
+  <h2>What is a board foot?</h2>
+  <p>A board foot is a volume unit for lumber: 144 cubic inches &mdash; a board 12 in long, 12 in wide, and 1 in thick. Hardwood in North America is billed by the board foot, but it is <b>sold as whole boards</b>: the bill says board feet, the rack says boards.</p>
+  <h3>How do you calculate board feet?</h3>
+  <p>For a board: <b>thickness (in) &times; width (in) &times; length (ft) &divide; 12</b>. Example: 2 &times; 6 &times; 8 &divide; 12 = <b>8 bf</b>. For a project part, the thickness that matters is the <b>rough quarter thickness you buy</b>, not the finished dimension: a 3/4&Prime; finished panel is cut from 4/4 (1&Prime;) stock, and a 1-1/2&Prime; finished leg needs 8/4 (2&Prime;) stock &mdash; 4/4 planed is only 13/16&Prime; thick and can never yield a 1-1/2&Prime; part.</p>
+  <h3>Why quarter thickness ≠ finished thickness?</h3>
+  <p>Rough-sawn hardwood comes in quarters: 4/4 = 1&Prime;, 5/4 = 1.25&Prime;, 6/4 = 1.5&Prime;, 8/4 = 2&Prime;. Surfacing removes 3/16&Prime; (up to 6/4) or 1/4&Prime; (8/4 and thicker): 4/4 S2S measures about 13/16&Prime; but is still billed as 1&Prime;. Planning from finished thickness &mdash; the only number on your cut list &mdash; is exactly what this calculator does for you.</p>
+  <h3>Why is a shopping list more than total board feet?</h3>
+  <p>Three structural gaps sit between "my parts total X bf" and "what to buy": (1) parts longer than a board can never come out of it; (2) ripping narrow parts from a wide board wastes 10&ndash;35% depending on the width remainder &mdash; 6&Prime; and 8&Prime; boards are classic trap widths for 1.5&Prime; parts; (3) a 32&Prime; part on a 96&Prime; board yields only 2 pieces, not 3, once the saw kerf is added. This tool models all three, per part, and outputs boards.</p>
+</section>
+
+</main>
+<footer>Free tool · No sign-up · Built for weekend builders</footer>
+
+<script>
+const K=0.125, E=2;
+const QUARTERS=[1,1.25,1.5,2,2.5,3];
+const QTXT={1:'4/4 (1")',1.25:'5/4 (1.25")',1.5:'6/4 (1.5")',2:'8/4 (2")',2.5:'10/4 (2.5")',3:'12/4 (3")'};
+const LENft=[4,6,8,10,12,14,16];
+function pickQuarter(tf){
+  // require planing allowance to survive: planed thickness must exceed finished by a margin
+  for(const q of QUARTERS){
+    const planed=q<=1.5?q-0.1875:q-0.25;
+    if(planed>=tf+0.0625-1e-9)return q;
+  }
+  return 0;
+}
+function pickLen(lp){
+  const need=lp+E;
+  for(const L of LENft){if(L*12>=need-1e-9)return L;}
+  return 0;
+}
+function addRow(){
+  const d=document.createElement('div');d.className='prow';
+  d.innerHTML='<div class="cell w-name cname"><span class="fl">Part</span><input type="text" placeholder="part" aria-label="part name"></div>'
+   +'<div class="cell w-th"><span class="fl">Finished thick (in)</span><input type="number" min="0.1" step="0.125" value="0.75" aria-label="finished thickness in inches" class="t"></div>'
+   +'<div class="cell w-wi"><span class="fl">Finished width (in)</span><input type="number" min="0.1" step="0.25" value="4" aria-label="finished width in inches" class="w"></div>'
+   +'<div class="cell w-le"><span class="fl">Finished length (in)</span><input type="number" min="1" step="0.5" value="24" aria-label="finished length in inches" class="l"></div>'
+   +'<div class="cell w-q"><span class="fl">Qty</span><input type="number" min="1" step="1" value="1" aria-label="quantity" class="q"></div>'
+   +'<div class="cell w-del"><span class="fl">&nbsp;</span><button type="button" class="del" onclick="delRow(this)" aria-label="delete row">✕</button></div>';
+  document.getElementById('pieces').appendChild(d);
+}
+function delRow(b){if(document.querySelectorAll('#pieces .prow:not(.head)').length>1)b.closest('.prow').remove();}
+const f1=n=>(+n).toFixed(1).replace(/\.0$/,'');
+const f2=n=>(+n).toFixed(2).replace(/\.?0+$/,'');
+function calc(){
+  const Bw=+document.getElementById('bw').value;
+  const allow=+document.getElementById('grade').value;
+  let total=0, cost=0, problems=[];
+  const out=[];
+  document.querySelectorAll('#pieces .prow').forEach((r,i)=>{
+    if(r.classList.contains('head'))return;
+    const name=r.querySelector('input[type=text]').value.trim()||('part '+(i+1));
+    const tf=+r.querySelector('.t').value, wp=+r.querySelector('.w').value, lp=+r.querySelector('.l').value, q0=+r.querySelector('.q').value;
+    if(!(tf>0)||!(wp>0)||!(lp>0)||!(q0>0)){problems.push(name+': invalid or missing values');return;}
+    const Q=pickQuarter(tf);
+    if(!Q){problems.push(name+': finished thickness '+tf+'" exceeds 12/4 stock');return;}
+    const Ls=pickLen(lp);
+    if(!Ls){problems.push(name+': '+lp+'" part exceeds 16 ft stock');return;}
+    // strips: n×wp + (n−1)×K ≤ usable width; allow 0.25" edge jointing on the board
+    const usable=Bw-0.25;
+    let strips=Math.floor((usable+K)/(wp+K));
+    let glue=false, stripsNeeded=0;
+    if(strips<1){
+      // glue-up mode: panel wider than one board → strip-join several boards
+      stripsNeeded=Math.ceil((wp+K)/(usable+K));
+      if(stripsNeeded>1||wp>usable){
+        if(wp<1){problems.push(name+': width too small');return;}
+        if(wp>usable*4){problems.push(name+': '+wp+'" panel needs '+stripsNeeded+' strips — build it from narrower parts instead');return;}
+        glue=true;
+        strips=1;
+      }else{
+        problems.push(name+': '+wp+'" wide part does not fit a '+Bw+'" board — pick a wider rack');
+        return;
+      }
+    }
+    // parts (or panel strips) per board length
+    const perLen=Math.floor((Ls*12-E+K)/(lp+K));
+    let c, N;
+    if(glue){
+      // glue-up: each panel needs `stripsNeeded` strips; one purchased board yields `perLen` strips
+      if(!(perLen>=1)){problems.push(name+': '+lp+'" panel length is too long for a '+Ls+' ft board');return;}
+      N=Math.ceil(q0*stripsNeeded/perLen*(1+allow));
+      c=perLen/stripsNeeded;
+    }else{
+      c=strips*perLen;
+      if(!(c>=1)){problems.push(name+': '+lp+'" part is too long for a '+Ls+' ft board after end trim');return;}
+      N=Math.ceil(q0/c*(1+allow));
+    }
+    const bf=N*(Q*Bw*Ls/12);
+    total+=bf;
+    const unit=(Q<=1.25)?(+document.getElementById('priceThin').value||0):(+document.getElementById('priceThick').value||0);
+    cost+=bf*unit;
+    out.push({name,Q,Qtxt:QTXT[Q],Ls,strips,perLen,N,bf,glue,stripsNeeded});
+  });
+  document.getElementById('rows').innerHTML=out.map(o=>{
+    const t=o.Qtxt.split(' ')[0];
+    const stock=(o.glue?`${t} × ${Bw}" — glue-up ${o.stripsNeeded} strips`:t+` × ${Bw}"`);
+    return `<tr><td>${o.name}</td><td>${stock}</td><td>${o.Ls} ft</td><td>${o.N}</td><td>${f2(o.bf)}</td></tr>`;
+  }).join('')
+    +(out.length?'':`<tr><td colspan="5">No valid parts yet</td></tr>`);
+  // board summary — grouped by length AND thickness tier
+  const byKey={};
+  out.forEach(o=>{const t=o.Qtxt.split(' ')[0];const k=o.Ls+' ft @ '+t;byKey[k]=(byKey[k]||0)+o.N;});
+  const keys=Object.keys(byKey).sort((a,b)=>{
+    const la=parseFloat(a), lb=parseFloat(b);
+    if(la!==lb)return la-lb;
+    return parseFloat(a.split('@')[1])-parseFloat(b.split('@')[1]);
+  });
+  const parts=keys.map(k=>byKey[k]+' × '+k);
+  const totalBoards=out.reduce((s,o)=>s+o.N,0);
+  document.getElementById('summary').innerHTML=out.length
+    ? `<b>Buy ${totalBoards} board${totalBoards===1?'':'s'}</b>: ${parts.join(' + ')}`
+    : '';
+  const lw=document.getElementById('lenWarn');
+  if(problems.length){lw.hidden=false;lw.innerHTML=problems.map(p=>'⚠️ '+p).join('<br>');}
+  else lw.hidden=true;
+  document.getElementById('tbf').textContent=f2(total);
+  document.getElementById('cost').textContent='$'+f2(cost);
+}
+document.addEventListener('input',calc);
+document.addEventListener('change',calc);
+calc();
+</script>
+</body>
+</html>
