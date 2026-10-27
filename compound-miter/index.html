@@ -224,48 +224,7 @@ img,table,input,select{max-width:100%}
 </section>
 
 <section>
-  <h2>3. How much molding to buy</h2>
-  <div class="pieces" id="pieces">
-    <div class="prow head">
-      <div class="cell w-name"><b>Wall run</b></div>
-      <div class="cell w-q"><b>Length (ft)</b></div>
-      <div class="cell w-del"><b></b></div>
-    </div>
-    <div class="prow">
-      <div class="cell w-name"><span class="fl">Wall run</span><input type="text" value="Wall A" aria-label="wall name"></div>
-      <div class="cell w-q"><span class="fl">Length (ft)</span><input type="number" min="0" step="0.5" value="12" aria-label="wall length in feet" class="len"></div>
-      <div class="cell w-del"><span class="fl">&nbsp;</span><button type="button" class="del" onclick="delRow(this)" aria-label="delete row">✕</button></div>
-    </div>
-  </div>
-  <button type="button" class="ghost" onclick="addRow()">+ Add wall</button>
-  <div class="grid2" style="margin-top:.6rem">
-    <div>
-      <label for="waste">Waste allowance</label>
-      <select id="waste" aria-label="waste allowance">
-        <option value="0.10">10% — one simple room, few corners</option>
-        <option value="0.15" selected>15% — typical room</option>
-        <option value="0.20">20% — many corners or short offcuts</option>
-        <option value="0.25">25% — outside corners cost the most</option>
-      </select>
-    </div>
-    <div>
-      <label for="stick">Length of each stick (ft)</label>
-      <select id="stick" aria-label="molding stick length">
-        <option value="8">8 ft</option>
-        <option value="10">10 ft</option>
-        <option value="12">12 ft</option>
-        <option value="14">14 ft</option>
-        <option value="16" selected>16 ft</option>
-      </select>
-    </div>
-  </div>
-  <p class="summary-box" id="buySummary"></p>
-  <p class="total">Total run: <b id="totalRun">0</b> ft &nbsp;·&nbsp; With waste: <b id="totalWaste">0</b> ft &nbsp;·&nbsp; Sticks: <b id="sticks">0</b></p>
-  <p class="note">Waste is not padding. Every outside corner eats an extra piece because the long point is on the ceiling edge and the offcut cannot be flipped. Short rooms need more, not less — you cannot join two short offcuts into a clean run.</p>
-</section>
-
-<section>
-  <h2>4. Quick reference — flat on the table</h2>
+  <h2>3. Quick reference — flat on the table</h2>
   <div id="refWrap">
     <table>
       <thead><tr><th>Corner</th><th>38 spring<br>M / B</th><th>45 spring<br>M / B</th><th>52 spring<br>M / B</th></tr></thead>
@@ -327,20 +286,6 @@ function setCorner(v, btn) {
   calc();
 }
 
-/* ---------- 墙段行 ---------- */
-function addRow() {
-  const d = document.createElement('div');
-  d.className = 'prow';
-  d.innerHTML = '<div class="cell w-name"><span class="fl">Wall run</span><input type="text" value="Wall" aria-label="wall name"></div>'
-    + '<div class="cell w-q"><span class="fl">Length (ft)</span><input type="number" min="0" step="0.5" value="10" aria-label="wall length in feet" class="len"></div>'
-    + '<div class="cell w-del"><span class="fl">&nbsp;</span><button type="button" class="del" onclick="delRow(this)" aria-label="delete row">✕</button></div>';
-  document.getElementById('pieces').appendChild(d);
-}
-function delRow(b) {
-  if (document.querySelectorAll('#pieces .prow:not(.head)').length > 1) b.closest('.prow').remove();
-  calc();
-}
-
 /* ---------- 主计算 ---------- */
 function calc() {
   const C = +document.getElementById('corner').value;
@@ -379,29 +324,6 @@ function calc() {
   // 长点提示：内外角不同（数值相同，长点边不同）
   lpEl.innerHTML = 'Mark the long point before cutting: <b>inside corner \u2192 bottom (wall) edge</b>; <b>outside corner \u2192 top (ceiling) edge</b>.';
 
-  // ---- 用料 ----
-  let run = 0;
-  document.querySelectorAll('#pieces .prow:not(.head)').forEach(row => {
-    const v = parseFloat(row.querySelector('.len').value);
-    if (isFinite(v) && v > 0) run += v;
-  });
-  const waste = +document.getElementById('waste').value;
-  const stick = +document.getElementById('stick').value;
-  const withWaste = run * (1 + waste);
-  const sticks = withWaste > 0 ? Math.ceil(withWaste / stick) : 0;
-
-  document.getElementById('totalRun').textContent = run.toFixed(1);
-  document.getElementById('totalWaste').textContent = withWaste.toFixed(1);
-  document.getElementById('sticks').textContent = sticks;
-
-  const buyEl = document.getElementById('buySummary');
-  if (run <= 0) {
-    buyEl.textContent = '';
-  } else {
-    buyEl.innerHTML = 'Buy <b>' + sticks + ' \u00D7 ' + stick + ' ft</b> stick'
-      + (sticks === 1 ? '' : 's') + ' \u2014 ' + (sticks * stick).toFixed(0)
-      + ' ft total, about ' + (sticks * stick - withWaste).toFixed(1) + ' ft spare.';
-  }
 }
 
 /* ---------- 速查表：由同一公式生成，避免与计算结果不一致 ---------- */
