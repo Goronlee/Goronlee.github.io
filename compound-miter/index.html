@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Analytics 4 · 复用站 1 的衡量 ID（同域子目录，GA4 会按路径区分） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2W7ZB6XFMJ"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2W7ZB6XFMJ');
+</script>
+<title>Compound Miter Calculator — Crown Molding Saw Settings</title>
+<meta name="description" content="Enter your wall corner and crown spring angle — get the exact miter and bevel to set on a compound miter saw, which way to swing and tilt, the long-point edge, and how much molding to buy.">
+<link rel="canonical" href="https://goronlee.github.io/compound-miter/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232f6f3e'/%3E%3Ctext x='16' y='22' font-size='15' text-anchor='middle' fill='white' font-family='Georgia'%3ECM%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Compound Miter Calculator — Crown Molding Saw Settings">
+<meta property="og:description" content="Wall corner + spring angle in, saw settings out: miter, bevel, which way to swing, plus how much molding to buy.">
+<meta property="og:url" content="https://goronlee.github.io/compound-miter/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Compound Miter Calculator for Crown Molding">
+<meta name="twitter:description" content="Get the miter and bevel for any corner, cut flat on the saw table.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Compound Miter Calculator",
+  "url": "https://goronlee.github.io/compound-miter/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are the miter and bevel angles for crown molding on a square corner?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Cutting flat on the saw table, a 90-degree corner gives miter 31.6 and bevel 33.9 for 38-degree spring molding, miter 35.3 and bevel 30.0 for 45-degree spring, and miter 38.2 and bevel 25.8 for 52-degree spring. These are the same numbers stamped on most miter saw detents." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I tell what spring angle my molding is?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It is usually stamped on the back edge of the molding as a pair such as 52/38 (38-degree spring) or 45/45 (45-degree spring). If there is no stamp, hold a piece in a framing square the way it sits on the wall and ceiling, then measure how far it drops down the wall leg and how far it projects across the ceiling leg. Spring angle is the arctangent of projection divided by drop: equal measurements mean 45 degrees, and a drop about 1.28 times the projection means 38 degrees." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my corner not need 45 degrees?",
+      "acceptedAnswer": { "@type": "Answer", "text": "45 degrees only works on a corner that is exactly 90 degrees. Real corners are often 88 to 95 degrees, and a bay or angled wall can be 135. Measure the actual corner with an angle finder or a bevel gauge held against both walls near the ceiling, then use that number. A 135-degree corner on 38-degree spring needs miter 14.3 and bevel 17.6, far less than a square corner." }
+    },
+    {
+      "@type": "Question",
+      "name": "My pieces do not meet. Is the miter or the bevel wrong?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The two failures look different. If the assembled corner rocks or the joint will not close along its length, the bevel is off. If the faces meet but there is a gap on the outside face of the joint, the miter is off. Change one setting at a time and recut scrap; changing both at once tells you nothing. Also check the saw scales against a digital angle gauge, because printed scales are often a degree or more out." }
+    },
+    {
+      "@type": "Question",
+      "name": "Inside corner and outside corner: same settings?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The miter and bevel numbers are the same for an inside and an outside corner of the same angle, but the long point moves. On an inside corner the long point is the bottom edge, the one that sits against the wall. On an outside corner the long point is the top edge, against the ceiling. Mark the long point before you cut so the two pieces end up the right length." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I cut crown molding nested against the fence instead?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, and it needs only a miter, no bevel, because the molding is already tilted to its spring angle by the way it rests in the saw. Nested miter is 180 minus the corner, divided by two: 45 degrees for a square corner, 22.5 for a 135. The catch is that it only works if the molding has a flat back and feet that sit square on the saw, and tall molding may not fit under the blade. The numbers on this page are for cutting flat on the table, which works on any profile." }
+    }
+  ]
+}
+</script>
+<style>
+:root{--ink:#1f2933;--line:#cbd2d9;--brand:#2f6f3e;--bg:#f7f5f0;--card:#ffffff}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body{font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:var(--bg);line-height:1.55}
+header{background:var(--brand);color:#fff;padding:1.2rem 1rem;text-align:center}
+header h1{font-size:1.45rem;font-weight:700}
+header p{opacity:.92;font-size:.95rem;margin-top:.2rem}
+main{max-width:860px;margin:0 auto;padding:1rem}
+section{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1.2rem;margin-bottom:1.2rem}
+h2{font-size:1.15rem;margin-bottom:.6rem;color:var(--brand)}
+label{display:block;font-size:.85rem;font-weight:700;margin:.5rem 0 .15rem}
+input,select{width:100%;padding:.45rem;border:1px solid var(--line);border-radius:5px;font-size:1rem;background:#fff;font-family:inherit}
+.pieces{display:table;width:100%;border-spacing:0 .35rem}
+.prow{display:table-row}
+.prow .cell{display:table-cell;padding:0 .25rem}
+.prow .cell:first-child{padding-left:0}
+.prow .cell:last-child{padding-right:0}
+.fl{font-size:.7rem;color:#52606d;font-weight:700;display:block;text-transform:uppercase;letter-spacing:.03em}
+.prow.head{display:none}
+@media(min-width:641px){.fl{display:none}.prow .cell:nth-child(n+2){padding-top:.35rem}
+  .pieces .prow.head{display:table-row}
+  .prow.head .cell{display:table-cell;padding-top:0;padding-bottom:.15rem}
+  .prow.head .cell b{font-size:.72rem;color:#52606d;text-transform:uppercase;letter-spacing:.03em}
+}
+.prow input{min-width:0}
+.w-name{width:34%}.w-q{width:18%}.w-del{width:8%}
+.prow.head .cell b{white-space:nowrap}
+button{background:var(--brand);color:#fff;border:0;border-radius:5px;padding:.55rem 1rem;font-size:1rem;cursor:pointer;margin-top:.6rem;font-family:inherit}
+button.ghost{background:#eef0f2;color:var(--ink);border:1px solid var(--line)}
+button.del{background:none;color:#a33;border:1px solid var(--line);padding:.4rem .55rem;margin-top:0}
+button.preset{background:#eef0f2;color:var(--ink);border:1px solid var(--line);padding:.35rem .6rem;font-size:.85rem;margin:.25rem .3rem 0 0}
+button.preset.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+.grid2 label:not(.sub-label){min-height:3.1em}
+.sub-label{font-size:.85rem;color:var(--ink);font-weight:700;margin:.25rem 0 .15rem}
+.summary-box{background:#eef3ee;border-left:4px solid var(--brand);padding:.6rem .8rem;margin-top:.8rem;font-size:1rem;border-radius:0 5px 5px 0}
+.summary-box:empty{display:none}
+.summary-box b{color:var(--brand)}
+.result{font-size:1.05rem}
+.result b{color:var(--brand)}
+table{width:100%;border-collapse:collapse;margin-top:.6rem;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:.4rem .5rem;text-align:left}
+th{background:#eef3ee}
+.note{font-size:.85rem;color:#52606d;margin-top:.5rem}
+.warn{background:#fdf3f2;border:1px solid #e5b4ae;color:#8c2f22;padding:.5rem .6rem;border-radius:5px;font-size:.85rem;margin-top:.6rem}
+.warn:empty{display:none}
+.total{font-size:1.1rem;margin-top:.7rem}
+.faq h3{font-size:1rem;margin:.7rem 0 .2rem}
+footer{text-align:center;font-size:.8rem;color:#7b8794;padding:1rem}
+footer a{color:#52606d}
+.angles{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:.7rem}
+.acard{background:#eef3ee;border:1px solid var(--line);border-radius:7px;padding:.7rem .8rem;text-align:center}
+.acard .lab{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:#52606d;font-weight:700}
+.acard .val{font-size:1.9rem;font-weight:700;color:var(--brand);line-height:1.15;font-variant-numeric:tabular-nums}
+.acard .sub{font-size:.78rem;color:#52606d;margin-top:.15rem;line-height:1.35}
+.steps{margin:.6rem 0 0 1.1rem;font-size:.95rem}
+.steps li{margin:.35rem 0}
+@media(max-width:640px){
+  header{padding:1rem .8rem}
+  header h1{font-size:1.15rem;line-height:1.3}
+  header p{font-size:.82rem;line-height:1.4}
+  main{padding:.7rem .6rem;max-width:100%}
+  section{padding:.9rem .7rem;max-width:100%}
+  .pieces,.prow{display:block;width:100%}
+  .prow{background:#fbfaf7;border:1px solid var(--line);border-radius:7px;padding:.55rem .6rem;margin-bottom:.55rem;position:relative;width:auto}
+  .prow .cell{display:block;width:100%!important;max-width:100%;padding:.15rem 0;box-sizing:border-box}
+  .prow .cell input{width:100%!important;max-width:100%;box-sizing:border-box;display:block}
+  .pieces{width:100%!important;display:block}
+  .prow.head{display:none!important}
+  .fl{display:block}
+  .prow .cell.w-del{width:auto!important;max-width:max-content;padding:0;margin-top:.3rem}
+  .prow .cell.w-del .fl{display:none}
+  .prow .cell.w-del .del{padding:.3rem .5rem}
+  .grid2{grid-template-columns:1fr}
+  .grid2 label:not(.sub-label){min-height:0}
+  h2{font-size:1rem}
+  table{font-size:.82rem;table-layout:fixed;width:100%}
+  th,td{padding:.3rem .3rem;word-break:break-word;overflow-wrap:anywhere}
+  .summary-box{font-size:.92rem;padding:.5rem .6rem}
+  .result,.pieces,.prow,.prow .cell,.grid2>div,section>*,main>*{max-width:100%;box-sizing:border-box}
+  .row,.prow{min-width:0}
+  .angles{grid-template-columns:1fr}
+  .acard .val{font-size:2.2rem}
+}
+img,table,input,select{max-width:100%}
+</style>
+</head>
+<body>
+<header>
+  <h1>Crown Molding Compound Miter Calculator</h1>
+  <p>Corner angle and spring angle in — exact saw settings out, cut flat on the table</p>
+</header>
+<main>
+
+<section>
+  <h2>1. Your corner and your molding</h2>
+  <div class="grid2">
+    <div>
+      <label for="corner">Wall corner angle (degrees)</label>
+      <input type="number" id="corner" min="1" max="180" step="0.5" value="90" aria-label="wall corner angle in degrees">
+      <div>
+        <button type="button" class="preset on" data-c="90" onclick="setCorner(90,this)">90 square</button>
+        <button type="button" class="preset" data-c="135" onclick="setCorner(135,this)">135 bay</button>
+        <button type="button" class="preset" data-c="120" onclick="setCorner(120,this)">120</button>
+        <button type="button" class="preset" data-c="45" onclick="setCorner(45,this)">45</button>
+      </div>
+    </div>
+    <div>
+      <label for="spring">Crown spring angle (degrees)</label>
+      <select id="spring" aria-label="crown spring angle">
+        <option value="38">38 — stamped 52/38, most common</option>
+        <option value="45" selected>45 — stamped 45/45</option>
+        <option value="52">52 — steep, projects further</option>
+        <option value="30">30 — shallow</option>
+        <option value="35">35</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+        <option value="55">55</option>
+        <option value="60">60</option>
+      </select>
+      <p class="note">Stamped on the back edge as a pair: <b>52/38</b> means 38 spring, <b>45/45</b> means 45 spring.</p>
+    </div>
+  </div>
+  <p class="note">Measure the corner with an angle finder or bevel gauge held against both walls up where the crown sits. Old houses are rarely square — 88 to 95 is normal, and a bay is usually 135.</p>
+</section>
+
+<section>
+  <h2>2. Set the saw to this</h2>
+  <div class="angles">
+    <div class="acard">
+      <div class="lab">Miter</div>
+      <div class="val" id="miterVal">—</div>
+      <div class="sub" id="miterSub">fence rotation from square cut</div>
+    </div>
+    <div class="acard">
+      <div class="lab">Bevel</div>
+      <div class="val" id="bevelVal">—</div>
+      <div class="sub" id="bevelSub">blade tilt from vertical</div>
+    </div>
+  </div>
+  <div id="setup" class="summary-box"></div>
+  <div id="warnBox" class="warn"></div>
+  <ol class="steps">
+    <li>Molding lies <b>flat on the table, decorative face up</b>. This is the flat-down method, not nested against the fence.</li>
+    <li>Set the <b>bevel first</b>, then the miter. Re-check the bevel after locking the miter; most saws drift.</li>
+    <li>Cut one end. <b>Both ends of the same corner use the same settings</b> — for the second end, swing the miter to the opposite side (or roll the piece face-for-face).</li>
+    <li id="longPoint">Mark the long point before cutting, so both pieces finish at the right length.</li>
+    <li>Cut a test pair from scrap and fit it in the corner before running full lengths.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>3. How much molding to buy</h2>
+  <div class="pieces" id="pieces">
+    <div class="prow head">
+      <div class="cell w-name"><b>Wall run</b></div>
+      <div class="cell w-q"><b>Length (ft)</b></div>
+      <div class="cell w-del"><b></b></div>
+    </div>
+    <div class="prow">
+      <div class="cell w-name"><span class="fl">Wall run</span><input type="text" value="Wall A" aria-label="wall name"></div>
+      <div class="cell w-q"><span class="fl">Length (ft)</span><input type="number" min="0" step="0.5" value="12" aria-label="wall length in feet" class="len"></div>
+      <div class="cell w-del"><span class="fl">&nbsp;</span><button type="button" class="del" onclick="delRow(this)" aria-label="delete row">✕</button></div>
+    </div>
+  </div>
+  <button type="button" class="ghost" onclick="addRow()">+ Add wall</button>
+  <div class="grid2" style="margin-top:.6rem">
+    <div>
+      <label for="waste">Waste allowance</label>
+      <select id="waste" aria-label="waste allowance">
+        <option value="0.10">10% — one simple room, few corners</option>
+        <option value="0.15" selected>15% — typical room</option>
+        <option value="0.20">20% — many corners or short offcuts</option>
+        <option value="0.25">25% — outside corners cost the most</option>
+      </select>
+    </div>
+    <div>
+      <label for="stick">Length of each stick (ft)</label>
+      <select id="stick" aria-label="molding stick length">
+        <option value="8">8 ft</option>
+        <option value="10">10 ft</option>
+        <option value="12">12 ft</option>
+        <option value="14">14 ft</option>
+        <option value="16" selected>16 ft</option>
+      </select>
+    </div>
+  </div>
+  <p class="summary-box" id="buySummary"></p>
+  <p class="total">Total run: <b id="totalRun">0</b> ft &nbsp;·&nbsp; With waste: <b id="totalWaste">0</b> ft &nbsp;·&nbsp; Sticks: <b id="sticks">0</b></p>
+  <p class="note">Waste is not padding. Every outside corner eats an extra piece because the long point is on the ceiling edge and the offcut cannot be flipped. Short rooms need more, not less — you cannot join two short offcuts into a clean run.</p>
+</section>
+
+<section>
+  <h2>4. Quick reference — flat on the table</h2>
+  <div id="refWrap">
+    <table>
+      <thead><tr><th>Corner</th><th>38 spring<br>M / B</th><th>45 spring<br>M / B</th><th>52 spring<br>M / B</th></tr></thead>
+      <tbody id="refRows"></tbody>
+    </table>
+  </div>
+  <p class="note">M = miter, B = bevel, degrees. Same numbers on inside and outside corners of the same angle — only the long point changes. Generated from the same formula as the calculator above, so the table can never drift from the result.</p>
+</section>
+
+<section class="faq">
+  <h2>Crown molding angles, explained</h2>
+  <p>Crown molding does not sit flat against the wall. It is sprung across the corner between wall and ceiling, so a cut that looks like a simple miter from the front is actually two angles at once: the blade has to swing <b>and</b> tilt. That pair — miter and bevel — is what this page gives you for any corner.</p>
+
+  <h3>Why 45 degrees fails on most corners</h3>
+  <p>45 is only correct on a corner that is exactly 90 degrees. Very few are: framing is rarely dead square, drywall corner bead rounds the inside corner, and plaster walls can be several degrees out. A corner measured at 92 degrees on 38 spring crown needs miter 30.7 and bevel 33.2, not 31.6 and 33.9 — enough to leave a gap you can see. Measure, do not assume.</p>
+
+  <h3>Miter versus bevel: which one fixes which gap</h3>
+  <p>They fail differently, and knowing which is off saves a lot of scrap. <b>Rocking assembly or a joint that will not close along its length means the bevel is wrong.</b> The pieces meet at the face but a gap opens along the seam. <b>A gap on the outside face with the pieces sitting flat means the miter is wrong.</b> Change one at a time; if you move both you learn nothing about which was off.</p>
+
+  <h3>Where the long point goes</h3>
+  <p>Every crown cut has a long point and a short point because the profile is cut at an angle. On an <b>inside corner the long point is the bottom edge</b>, the one that touches the wall. On an <b>outside corner the long point is the top edge</b>, against the ceiling. Cut to the long point, not the short one, or the piece comes up short at the corner.</p>
+
+  <h3>Nested versus flat: two valid methods, two different numbers</h3>
+  <p>Nested means the molding sits upside down in the saw, resting on its back feet the way it will hang on the wall. That needs only a miter — 180 minus the corner, divided by two — and no bevel at all, because the molding is already at its spring angle. It is faster and it is what many pros do. But it only works when the back is flat and the feet register square, and tall crown may not clear the blade. Flat on the table works on any profile, which is why the numbers here are for flat-down. Never mix the two sets of numbers: nested miter for a square corner is 45, flat-down miter is 35.3 for 45 spring.</p>
+
+  <h3>Check the saw before you trust the scale</h3>
+  <p>Printed miter and bevel scales on consumer saws are commonly a degree or more out, and a degree of bevel error spread across sixteen cut faces on an octagon is visible. Use a digital angle gauge against the blade, and cut test pieces from the same stock thickness as the finished work.</p>
+</section>
+
+</main>
+<footer>Free tool · No sign-up · Built for weekend builders</footer>
+
+<script>
+/* ============================================================
+   算法区 —— 定稿公式，已用 540 点权威基准全量验证（见 13 号文件）
+   Miter = atan( sin(S) / tan(C/2) )
+   Bevel = asin( cos(S) * cos(C/2) )
+   C = 墙角角度, S = spring angle
+   ============================================================ */
+const D = Math.PI / 180;
+
+function crownCalc(C, S) {
+  const half = C / 2 * D;
+  const s = S * D;
+  return {
+    miter: Math.atan(Math.sin(s) / Math.tan(half)) / D,
+    bevel: Math.asin(Math.cos(s) * Math.cos(half)) / D
+  };
+}
+
+// 显示用：一位小数
+const r1 = n => (Math.round(n * 10) / 10).toFixed(1);
+
+/* ---------- 输入区：墙角预设 ---------- */
+function setCorner(v, btn) {
+  document.getElementById('corner').value = v;
+  document.querySelectorAll('button.preset').forEach(b => b.classList.remove('on'));
+  if (btn) btn.classList.add('on');
+  calc();
+}
+
+/* ---------- 墙段行 ---------- */
+function addRow() {
+  const d = document.createElement('div');
+  d.className = 'prow';
+  d.innerHTML = '<div class="cell w-name"><span class="fl">Wall run</span><input type="text" value="Wall" aria-label="wall name"></div>'
+    + '<div class="cell w-q"><span class="fl">Length (ft)</span><input type="number" min="0" step="0.5" value="10" aria-label="wall length in feet" class="len"></div>'
+    + '<div class="cell w-del"><span class="fl">&nbsp;</span><button type="button" class="del" onclick="delRow(this)" aria-label="delete row">✕</button></div>';
+  document.getElementById('pieces').appendChild(d);
+}
+function delRow(b) {
+  if (document.querySelectorAll('#pieces .prow:not(.head)').length > 1) b.closest('.prow').remove();
+  calc();
+}
+
+/* ---------- 主计算 ---------- */
+function calc() {
+  const C = +document.getElementById('corner').value;
+  const S = +document.getElementById('spring').value;
+
+  const miterEl = document.getElementById('miterVal');
+  const bevelEl = document.getElementById('bevelVal');
+  const setupEl = document.getElementById('setup');
+  const warnEl = document.getElementById('warnBox');
+  const lpEl = document.getElementById('longPoint');
+
+  // 输入合法性
+  if (!isFinite(C) || C <= 0 || C > 180 || !isFinite(S) || S <= 0 || S >= 90) {
+    miterEl.textContent = '—';
+    bevelEl.textContent = '—';
+    setupEl.textContent = '';
+    warnEl.textContent = 'Enter a corner between 1 and 180 degrees, and a spring angle between 1 and 89.';
+    return;
+  }
+
+  const a = crownCalc(C, S);
+  miterEl.textContent = r1(a.miter) + '\u00B0';
+  bevelEl.textContent = r1(a.bevel) + '\u00B0';
+
+  setupEl.innerHTML = 'Cutting flat on the table: blade tilt <b>' + r1(a.bevel)
+    + '\u00B0</b> from vertical, fence swung <b>' + r1(a.miter)
+    + '\u00B0</b> from a square cut. Both ends of this corner use these same two numbers.';
+
+  // 警告：角度超出常见锯的能力
+  const ws = [];
+  if (a.bevel > 45) ws.push('Bevel ' + r1(a.bevel) + '\u00B0 exceeds the 45\u00B0 tilt limit on most saws. Cut nested instead, or flip the molding and cut from the other face.');
+  if (a.miter > 60) ws.push('Miter ' + r1(a.miter) + '\u00B0 is past the stops on many saws; check before you set up.');
+  if (C > 170) ws.push('A corner this close to 180\u00B0 is almost a flat wall \u2014 confirm the measurement, the numbers are near zero.');
+  warnEl.innerHTML = ws.length ? ws.join(' ') : '';
+
+  // 长点提示：内外角不同（数值相同，长点边不同）
+  lpEl.innerHTML = 'Mark the long point before cutting: <b>inside corner \u2192 bottom (wall) edge</b>; <b>outside corner \u2192 top (ceiling) edge</b>.';
+
+  // ---- 用料 ----
+  let run = 0;
+  document.querySelectorAll('#pieces .prow:not(.head)').forEach(row => {
+    const v = parseFloat(row.querySelector('.len').value);
+    if (isFinite(v) && v > 0) run += v;
+  });
+  const waste = +document.getElementById('waste').value;
+  const stick = +document.getElementById('stick').value;
+  const withWaste = run * (1 + waste);
+  const sticks = withWaste > 0 ? Math.ceil(withWaste / stick) : 0;
+
+  document.getElementById('totalRun').textContent = run.toFixed(1);
+  document.getElementById('totalWaste').textContent = withWaste.toFixed(1);
+  document.getElementById('sticks').textContent = sticks;
+
+  const buyEl = document.getElementById('buySummary');
+  if (run <= 0) {
+    buyEl.textContent = '';
+  } else {
+    buyEl.innerHTML = 'Buy <b>' + sticks + ' \u00D7 ' + stick + ' ft</b> stick'
+      + (sticks === 1 ? '' : 's') + ' \u2014 ' + (sticks * stick).toFixed(0)
+      + ' ft total, about ' + (sticks * stick - withWaste).toFixed(1) + ' ft spare.';
+  }
+}
+
+/* ---------- 速查表：由同一公式生成，避免与计算结果不一致 ---------- */
+(function buildRef() {
+  const corners = [45, 60, 75, 90, 105, 120, 135, 150, 165, 180];
+  const springs = [38, 45, 52];
+  const tb = document.getElementById('refRows');
+  corners.forEach(C => {
+    const tr = document.createElement('tr');
+    let html = '<td>' + C + '\u00B0</td>';
+    springs.forEach(S => {
+      const a = crownCalc(C, S);
+      html += '<td>' + r1(a.miter) + ' / ' + r1(a.bevel) + '</td>';
+    });
+    tr.innerHTML = html;
+    tb.appendChild(tr);
+  });
+})();
+
+document.addEventListener('input', calc);
+document.addEventListener('change', calc);
+calc();
+</script>
+</body>
+</html>
